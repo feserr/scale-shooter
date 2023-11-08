@@ -39,6 +39,7 @@ func _process(_delta):
 
 # Signal callbacks
 
+
 ## Callback when body enters the hit area.
 func _on_hit_area_body_entered(body):
 	if body.is_in_group("bullet"):
