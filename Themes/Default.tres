@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dt30ypwfqdn8v"]
+
+[ext_resource type="FontFile" uid="uid://c2oh8u0vo5ofr" path="res://Assets/fonts/fixed_sys_excelsior.ttf" id="1_sogrv"]
+
+[resource]
+default_font = ExtResource("1_sogrv")

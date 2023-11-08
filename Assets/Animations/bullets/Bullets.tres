@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://c64l5tj33q86k"]
+
+[ext_resource type="Texture2D" uid="uid://btaw7vl5tsibm" path="res://Assets/Sprites/Bullets/Bullets.png" id="1_8ldho"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cva3d"]
+atlas = ExtResource("1_8ldho")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqj1q"]
+atlas = ExtResource("1_8ldho")
+region = Rect2(8, 0, 8, 8)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cva3d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqj1q")
+}],
+"loop": true,
+"name": &"yellow",
+"speed": 5.0
+}]

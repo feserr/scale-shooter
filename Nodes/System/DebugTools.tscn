@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtu8nbqs6t3g1"]
+
+[ext_resource type="Script" path="res://Scripts/System/Debug.gd" id="1_xb35g"]
+[ext_resource type="Script" path="res://Scripts/System/InfoContainer.gd" id="2_2y314"]
+[ext_resource type="Script" path="res://Scripts/System/InfoBox.gd" id="3_1eoqy"]
+[ext_resource type="Theme" uid="uid://dt30ypwfqdn8v" path="res://Themes/Default.tres" id="4_lqmu5"]
+
+[node name="Debug" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_xb35g")
+
+[node name="Info" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_2y314")
+
+[node name="InfoBox" type="MarginContainer" parent="Info"]
+layout_mode = 2
+script = ExtResource("3_1eoqy")
+
+[node name="Panel" type="Panel" parent="Info/InfoBox"]
+layout_mode = 2
+
+[node name="FpsLabel" type="RichTextLabel" parent="Info/InfoBox/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 60.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_lqmu5")
+bbcode_enabled = true
+scroll_active = false
+visible_characters_behavior = 2

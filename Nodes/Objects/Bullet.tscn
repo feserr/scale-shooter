@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbic7grktkmdx"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/Bullet.gd" id="1_2l6s4"]
+[ext_resource type="SpriteFrames" uid="uid://c64l5tj33q86k" path="res://Assets/Animations/bullets/Bullets.tres" id="2_jtr7x"]
+[ext_resource type="PackedScene" uid="uid://2pdks5y76rau" path="res://Nodes/Components/BulletComponent.tscn" id="3_htosg"]
+[ext_resource type="Script" path="res://Scripts/Resources/GunStats.gd" id="4_hb3kd"]
+
+[sub_resource type="Resource" id="Resource_xt704"]
+script = ExtResource("4_hb3kd")
+damage_per_bullet = 10.0
+knockback_force = 1.0
+stun_time = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r5ohv"]
+radius = 4.0
+
+[node name="Bullet" type="Node2D" groups=["bullet"]]
+script = ExtResource("1_2l6s4")
+speed = 300.0
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_jtr7x")
+
+[node name="Notifier" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-5.96046e-08, 0)
+scale = Vector2(0.3, 0.3)
+
+[node name="BulletComponent" parent="." instance=ExtResource("3_htosg")]
+collision_layer = 4
+gun_stats = SubResource("Resource_xt704")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletComponent"]
+visible = false
+shape = SubResource("CircleShape2D_r5ohv")
