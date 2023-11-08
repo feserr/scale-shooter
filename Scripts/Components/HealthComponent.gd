@@ -9,16 +9,13 @@ signal no_health
 @export var max_health: float = ObjectsGlobals.MAX_HEALTH
 
 # Lambdas
-var has_health = func() -> bool:
-	return _current_health > 0
+var has_health = func() -> bool: return _current_health > 0
 
-var to_percentage = func() -> float:
-	return (
-		_current_health / max_health if _current_health > 0 else 0.0
-	)
+var to_percentage = func() -> float: return (
+	_current_health / max_health if _current_health > 0 else 0.0
+)
 
-var is_damaged = func() -> bool:
-	return _current_health < max_health
+var is_damaged = func() -> bool: return _current_health < max_health
 
 # Private
 var _has_no_health: bool = false
