@@ -1,14 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://cn2mf7pug144t"]
+[gd_scene load_steps=7 format=3 uid="uid://cn2mf7pug144t"]
 
 [ext_resource type="PackedScene" uid="uid://cmc8gamtwvo13" path="res://Nodes/Characters/Player.tscn" id="1_0pv22"]
 [ext_resource type="Script" path="res://Scripts/test.gd" id="1_gw8np"]
 [ext_resource type="PackedScene" uid="uid://dbic7grktkmdx" path="res://Nodes/Objects/Bullet.tscn" id="2_bgrbo"]
+[ext_resource type="PackedScene" uid="uid://b1hy7ogjblc1m" path="res://Nodes/Characters/Enemies/EnemyTest.tscn" id="4_ly55l"]
 
 [sub_resource type="Curve2D" id="Curve2D_ebbs7"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 192, 0, 0, 0, 0, 0, 384, 0, 0, 0, 0, 0, 384, 216, 0, 0, 0, 0, 192, 216, 0, 0, 0, 0, 192, 0)
 }
 point_count = 5
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_31xjh"]
+vertices = PackedVector2Array(0, 0, 384, 0, 384, 216, 0, 216)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 384, 0, 384, 216, 0, 216)])
 
 [node name="Test" type="Node"]
 script = ExtResource("1_gw8np")
@@ -25,6 +31,13 @@ position = Vector2(192, 0)
 
 [node name="BulletTimer" type="Timer" parent="."]
 wait_time = 0.25
-autostart = true
+
+[node name="EnemyTest" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_ly55l")]
+position = Vector2(149, 120)
+player = NodePath("../Player")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_31xjh")
+navigation_layers = 128
 
 [connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]

@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+# Signales
+signal no_health
+
 # Exported
 @export var speed: float = 100.0
 
@@ -10,13 +13,13 @@ var _screen_size = Vector2.ZERO
 @onready var _hurtbox_component: HurtboxComponent = $HurtboxComponent
 @onready var _velocity_component: VelocityComponent = $VelocityComponent
 @onready var _controller_component: ControllerComponent = $ControllerComponent
+@onready var _freeze_component: FreezeComponent = $FreezeComponent
 
 
 func _ready():
 	_health_component.no_health.connect(_on_no_health)
 	_hurtbox_component.hit_by_bullet.connect(_on_hit_by_bullet)
 	_hurtbox_component.hit_by_hitbox.connect(_on_hit_by_hitbox)
-
 	_screen_size = get_viewport_rect().size
 
 
@@ -40,19 +43,16 @@ func _process(_delta):
 # Signal callbacks
 
 
-## Callback when body enters the hit area.
-func _on_hit_area_body_entered(body):
-	if body.is_in_group("bullet"):
-		body.on_collision()
-
-
 ## Callback when health is 0 or below.
 func _on_no_health() -> void:
+	no_health.emit()
 	queue_free()
 
 
 ## Callback when a bullet hits the player.
 func _on_hit_by_bullet(hit_context: BulletHitContext) -> void:
+	_freeze_component.frame_freeze()
+
 	_health_component.damage(hit_context.attack_update.attack_damage)
 
 	if _velocity_component:
@@ -64,6 +64,8 @@ func _on_hit_by_bullet(hit_context: BulletHitContext) -> void:
 
 ## Callback when hit by a hitbox.
 func _on_hit_by_hitbox(hit_context: HitboxHitContext) -> void:
+	_health_component.damage(hit_context.attack_update.attack_damage)
+
 	if _velocity_component:
 		_velocity_component.knockback_request(hit_context.attack_update)
 

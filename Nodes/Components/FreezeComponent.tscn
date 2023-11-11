@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dacvwp1kxai3u"]
+
+[ext_resource type="Script" path="res://Scripts/Components/FreezeComponent.gd" id="1_jq8ok"]
+
+[node name="FreezeComponent" type="Node"]
+script = ExtResource("1_jq8ok")
+time_scale = 0.05
+duration = 0.1

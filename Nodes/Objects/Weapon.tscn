@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhlvyv76u6qu8"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/Weapon.gd" id="1_51i3h"]
+[ext_resource type="SpriteFrames" uid="uid://nw6exr8tynqq" path="res://Assets/Animations/Weapons/Weapons.tres" id="2_o82lh"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_51i3h")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 1)
+sprite_frames = ExtResource("2_o82lh")
+animation = &"Pistol"
+
+[node name="Marker2D" type="Marker2D" parent="."]

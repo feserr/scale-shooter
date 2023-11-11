@@ -5,6 +5,7 @@ extends Node2D
 
 # Private
 var _direction: Vector2 = Vector2.ZERO
+var _debug_draw: bool = ObjectsGlobals.DEBUG_DRAW
 @onready var _bullet_component: BulletComponent = $BulletComponent
 
 
@@ -16,6 +17,19 @@ func _ready():
 func _process(delta):
 	var velocity: Vector2 = _direction * speed * delta
 	global_position += velocity
+
+	if _debug_draw:
+		queue_redraw()
+
+
+func _draw():
+	var velocity: Vector2 = _direction * speed
+	self.draw_line(
+		Vector2.ZERO,
+		velocity / ObjectsGlobals.DRAW_LINE_MOD,
+		ObjectsGlobals.DEBUG_COLOR,
+		ObjectsGlobals.DEBUG_LINE_WIDTH
+	)
 
 
 ## Set the direction.

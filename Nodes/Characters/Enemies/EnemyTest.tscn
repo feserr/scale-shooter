@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1hy7ogjblc1m"]
+
+[ext_resource type="Texture2D" uid="uid://hare3lw1ykm2" path="res://Assets/Sprites/Test/16.png" id="1_w8h88"]
+[ext_resource type="Script" path="res://Scripts/Characters/Enemies/EnemyTest.gd" id="1_wcnt1"]
+[ext_resource type="PackedScene" uid="uid://c64fisp3qb556" path="res://Nodes/Components/PathFindComponent.tscn" id="2_6ok5f"]
+[ext_resource type="PackedScene" uid="uid://dp36clsv336e1" path="res://Nodes/Components/VelocityComponent.tscn" id="3_sjw33"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qt7su"]
+size = Vector2(16, 16)
+
+[node name="EnemyTest" type="CharacterBody2D" node_paths=PackedStringArray("path_find_component", "velocity_component")]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_wcnt1")
+path_find_component = NodePath("PathFindComponent")
+velocity_component = NodePath("VelocityComponent")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_w8h88")
+
+[node name="PathFindComponent" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("2_6ok5f")]
+velocity_component = NodePath("../VelocityComponent")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("3_sjw33")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qt7su")

@@ -17,7 +17,9 @@ func scan_input() -> void:
 	if velocity_component == null or not active:
 		return
 
-	velocity_component.accelerate(Input.get_vector(negative_x, positive_x, negative_y, positive_y))
+	velocity_component.accelerate_to_direction(
+		Input.get_vector(negative_x, positive_x, negative_y, positive_y)
+	)
 
 
 ## Deactivate the input for the given time.

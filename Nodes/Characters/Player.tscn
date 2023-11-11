@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmc8gamtwvo13"]
+[gd_scene load_steps=12 format=3 uid="uid://cmc8gamtwvo13"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/Player.gd" id="1_nabs1"]
 [ext_resource type="SpriteFrames" uid="uid://bjd0xiynr143r" path="res://Assets/Animations/characters/Player.tres" id="1_ui77m"]
@@ -7,13 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://btoq2gcla4srg" path="res://Nodes/Components/StatusReceiverComponent.tscn" id="5_kvngb"]
 [ext_resource type="PackedScene" uid="uid://bwfdop1s8y1ev" path="res://Nodes/Components/ControllerComponent.tscn" id="6_e1lg2"]
 [ext_resource type="PackedScene" uid="uid://dp36clsv336e1" path="res://Nodes/Components/VelocityComponent.tscn" id="7_08ytn"]
+[ext_resource type="PackedScene" uid="uid://dacvwp1kxai3u" path="res://Nodes/Components/FreezeComponent.tscn" id="8_rqyq0"]
+[ext_resource type="PackedScene" uid="uid://dhlvyv76u6qu8" path="res://Nodes/Objects/Weapon.tscn" id="9_hoylj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8m7sr"]
 radius = 6.0
 height = 18.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6uu04"]
-size = Vector2(13, 15)
+size = Vector2(9, 11)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 0
@@ -24,6 +26,7 @@ metadata/_edit_group_ = true
 shape = SubResource("CapsuleShape2D_8m7sr")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+z_index = 1
 sprite_frames = ExtResource("1_ui77m")
 animation = &"walk"
 autoplay = "idle"
@@ -45,3 +48,7 @@ shape = SubResource("RectangleShape2D_6uu04")
 velocity_component = NodePath("../VelocityComponent")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("7_08ytn")]
+
+[node name="FreezeComponent" parent="." instance=ExtResource("8_rqyq0")]
+
+[node name="Weapon" parent="." instance=ExtResource("9_hoylj")]
